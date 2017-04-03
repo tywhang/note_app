@@ -3,9 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <title>Note App | Amazon Web Dev</title>
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <style>
+    .modal {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
+      align-items: center;
+      justify-content: center;
+      background-color: black;
+      opacity: 0.9;
+      display: none;
+    }
+
+    .modal--open {
+      display: flex;
+    }
+
+    .modal__body {
+      background-color: white;
+      max-width: 36rem;
+      max-height: 24rem;
+      height: 90%;
+      width: 90%;
+      position: relative;
+    }
+
+    .modal__close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+  </style>
 </head>
 <body>
-  
+  <div>
+    <h1>Notes</h1>
+
+    <button type="button" class="js-new-note">New Note</button>
+  </div>
+
+  <div class="modal">
+    <div class="modal__body">
+      <button type="button" class="js-close-modal modal__close">
+        Close
+      </button>
+      <p>Yo</p>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script>
+    $('.js-new-note').click(function() {
+      $('.modal').addClass('modal--open')
+    });
+
+    $('.js-close-modal').click(function() {
+      $('.modal').removeClass('modal--open');
+    });
+  </script>
 </body>
 </html>
