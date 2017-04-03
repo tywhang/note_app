@@ -51,9 +51,10 @@
 
     <button type="button" class="js-new-note">New Note</button>
     <div class="js-notes">
-      <div data-id="0" class="note">
+      <div class="note" data-id="0">
         <p class="js-note-body">Note here!</p>
         <button class="js-edit-note">Edit</button>
+        <button class="js-destroy-note">Destroy</button>
       </div>
     </div>
   </div>
@@ -71,7 +72,7 @@
 
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script>
-    var noteCount = 0;
+    var noteIndex = 0;
     var currentEditNoteId;
 
     $('.js-new-note').click(function() {
@@ -80,10 +81,10 @@
     $('.js-close-modal').click(closeModal);
 
     $('.js-create-note').click(function() {
-      noteCount++;
+      noteIndex++;
 
       var body = $('.js-edit-note-body').val();
-      var html = '<div class="note" data-id="' + noteCount + '"><p>' + body + '</p><button class="js-edit-note">Edit</button></div>';
+      var html = '<div class="note" data-id="' + noteIndex + '"><p>' + body + '</p><button class="js-edit-note">Edit</button></div>';
       $('.js-notes').append(html);
       closeModal();
     });
@@ -99,6 +100,12 @@
       $('[data-id=' + currentEditNoteId + ']').find('p').text(body);
       closeModal();
     });
+
+    $('.js-destroy-note').click(function() {
+      if (confirm('Are you Sure?')) {
+        $(this).parent().remove();
+      }
+    })
 
     function closeModal() {
       $('.js-edit-note-body').val('');
