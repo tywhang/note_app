@@ -200,9 +200,7 @@
     $('.js-create-note').click(function() {
       noteIndex++;
 
-      var body = $('.js-edit-note-body').val();
-      var colorIndex = $('[name=color]:checked').data('colorIndex');
-      var html = newNoteBody(body, colorIndex);
+      var html = noteContent(noteIndex);
       $('.js-notes').append(html);
       closeModal();
     });
@@ -215,8 +213,8 @@
     });
 
     $('.js-update-note').click(function() {
-      var body = $('.js-edit-note-body').val();
-      $('[data-id=' + currentEditNoteId + ']').find('p').text(body);
+      var html = noteContent(currentEditNoteId);
+      $('[data-id=' + currentEditNoteId + ']').replaceWith(html);
       closeModal();
     });
 
@@ -236,7 +234,10 @@
       $('.modal').addClass('modal--open modal--' + mode);
     }
 
-    function newNoteBody(body, colorIndex) {
+    function noteContent(noteIndex) {
+      var body = $('.js-edit-note-body').val();
+      var colorIndex = $('[name=color]:checked').data('colorIndex');
+
       return (
         '<div class="note" data-id="' + noteIndex + '" style="background-color: ' + colors[colorIndex] + '">' +
           '<p class="js-note-body note__body">' + body + '</p>' +
