@@ -206,9 +206,9 @@
     });
 
     $(document).on('click', '.js-edit-note', function() {
-      var note = $(this).parent().find('p')
-      var body = note.text();
-      currentEditNoteId = note.parent().data('id');
+      var note = $(this).closest('.js-note')
+      var body = note.find('p').text();
+      currentEditNoteId = note.data('id');
       openModal('edit', body);
     });
 
@@ -220,7 +220,7 @@
 
     $(document).on('click', '.js-destroy-note', function() {
       if (confirm('Are you sure?')) {
-        $(this).parent().parent().remove();
+        $(this).closest('.js-note').remove();
       }
     });
 
@@ -239,7 +239,7 @@
       var colorIndex = $('[name=color]:checked').data('colorIndex');
 
       return (
-        '<div class="note" data-id="' + noteIndex + '" style="background-color: ' + colors[colorIndex] + '">' +
+        '<div class="note js-note" data-id="' + noteIndex + '" style="background-color: ' + colors[colorIndex] + '">' +
           '<p class="js-note-body note__body">' + body + '</p>' +
           '<button class="js-edit-note button--mediumblue">Edit</button>' +
           '<button class="js-destroy-note button--red">Delete</button>' +
