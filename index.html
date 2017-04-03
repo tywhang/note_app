@@ -38,6 +38,11 @@
       top: 1rem;
       right: 1rem;
     }
+
+    .note {
+      border: 1px solid black;
+      padding: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -45,7 +50,12 @@
     <h1>Notes</h1>
 
     <button type="button" class="js-new-note">New Note</button>
-    <div class="js-notes"></div>
+    <div class="js-notes">
+      <div data-id="0" class="note">
+        <p class="js-note-body">Note here!</p>
+        <button class="js-edit-note">Edit</button>
+      </div>
+    </div>
   </div>
 
   <div class="modal">
@@ -53,28 +63,51 @@
       <button type="button" class="js-close-modal modal__close">
         Close
       </button>
-      <textarea class="js-note-body"></textarea>
-      <button class="js-create-note">Create!</button>
+      <textarea class="js-edit-note-body"></textarea>
+      <button class="js-create-note create-only">Create!</button>
+      <button class="js-update-note edit-only">Update!</button>
     </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script>
-    $('.js-new-note').click(function() {
-      $('.modal').addClass('modal--open');
-    });
+    var noteCount = 0;
+    var currentEditNoteId;
 
+    $('.js-new-note').click(function() {
+      openModal('');
+    });
     $('.js-close-modal').click(closeModal);
 
     $('.js-create-note').click(function() {
-      var html = "<div>" + $('.js-note-body').val() + "</div>";
+      noteCount++;
+
+      var body = $('.js-edit-note-body').val();
+      var html = '<div class="note" data-id="' + noteCount + '"><p>' + body + '</p><button class="js-edit-note">Edit</button></div>';
       $('.js-notes').append(html);
       closeModal();
     });
 
+    $(document).on('click', '.js-edit-note', function() {
+      var body = $(this).prev().text();
+      currentEditNoteId = $(this).parent().data('id');
+      openModal(body);
+    });
+
+    $('.js-update-note').click(function() {
+      var body = $('.js-edit-note-body').val();
+      $('[data-id=' + currentEditNoteId + ']').find('p').text(body);
+      closeModal();
+    });
+
     function closeModal() {
-      $('.js-notes').val('');
+      $('.js-edit-note-body').val('');
       $('.modal').removeClass('modal--open');
+    }
+
+    function openModal(noteBody) {
+      $('.js-edit-note-body').val(noteBody);
+      $('.modal').addClass('modal--open');
     }
   </script>
 </body>
