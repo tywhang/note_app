@@ -28,6 +28,9 @@
       height: 90%;
       width: 90%;
       position: relative;
+      align-items: center;
+      justify-content: center;
+      display: flex;
     }
 
     .modal__close {
@@ -42,6 +45,7 @@
     <h1>Notes</h1>
 
     <button type="button" class="js-new-note">New Note</button>
+    <div class="js-notes"></div>
   </div>
 
   <div class="modal">
@@ -49,19 +53,29 @@
       <button type="button" class="js-close-modal modal__close">
         Close
       </button>
-      <p>Yo</p>
+      <textarea class="js-note-body"></textarea>
+      <button class="js-create-note">Create!</button>
     </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script>
     $('.js-new-note').click(function() {
-      $('.modal').addClass('modal--open')
+      $('.modal').addClass('modal--open');
     });
 
-    $('.js-close-modal').click(function() {
-      $('.modal').removeClass('modal--open');
+    $('.js-close-modal').click(closeModal);
+
+    $('.js-create-note').click(function() {
+      var html = "<div>" + $('.js-note-body').val() + "</div>";
+      $('.js-notes').append(html);
+      closeModal();
     });
+
+    function closeModal() {
+      $('.js-notes').val('');
+      $('.modal').removeClass('modal--open');
+    }
   </script>
 </body>
 </html>
