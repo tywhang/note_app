@@ -1,0 +1,149 @@
+body {
+  font-family: Helvetica;
+  margin: 0;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+button {
+  padding: 0.75rem 1rem;
+  background: cyan;
+  border-width: 0;
+  border-radius: 18px;
+  outline: none;
+  cursor: pointer;
+  margin: 0 0.25rem;
+}
+
+.button--new {
+  display: block;
+  margin: 1rem auto;
+}
+
+.button--mediumblue {
+  background-color: mediumblue;
+  color: white;
+}
+
+.button--red {
+  background-color: red;
+  color: white;
+}
+
+.header {
+  background-color: blue;
+  color: white;
+  padding: 1rem 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  opacity: 0.7;
+}
+
+.main {
+  background-color: #F1F1F1;
+  height: 100vh;
+  padding: 1rem;
+  padding-top: 4rem;
+}
+
+.modal {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: none;
+}
+
+.modal--open {
+  display: flex;
+}
+
+.new-only, .edit-only {
+  display: none;
+}
+
+.modal--new .new-only {
+  display: block;
+}
+
+.modal--edit .edit-only {
+  display: block;
+}
+
+.modal__header {
+  display: flex;
+}
+
+.modal__body {
+  background-color: white;
+  max-width: 36rem;
+  max-height: 24rem;
+  height: 90%;
+  width: 90%;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.edit-note-body {
+  width: 80%;
+  margin-bottom: 1rem;
+  min-height: 5rem;
+}
+
+.color-picker {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.color-picker__input {
+  display: none;
+}
+
+.color-picker__input:checked + label {
+  border: none;
+  outline: 3px solid blue;
+}
+
+.color-picker__label {
+  height: 1rem;
+  width: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  border: 1px solid black;
+  margin: 0 0.25rem;
+}
+
+.note {
+  align-items: center;
+  background-color: white;
+  border-radius: 1.5rem;
+  display: flex;
+  padding: 1rem 1.5rem;
+  max-width: 36rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.note__body {
+  flex: 1;
+}
