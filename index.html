@@ -23,6 +23,7 @@
       border-radius: 18px;
       outline: none;
       cursor: pointer;
+      margin: 0 0.25rem;
     }
 
     .button--new {
@@ -128,10 +129,6 @@
     .note__body {
       flex: 1;
     }
-
-    .note__buttons button {
-      margin: 0 0.25rem;
-    }
   </style>
 </head>
 <body>
@@ -176,8 +173,9 @@
     });
 
     $(document).on('click', '.js-edit-note', function() {
-      var body = $(this).prev().text();
-      currentEditNoteId = $(this).parent().data('id');
+      var note = $(this).parent().find('p')
+      var body = note.text();
+      currentEditNoteId = note.parent().data('id');
       openModal('edit', body);
     });
 
@@ -207,10 +205,8 @@
       return (
         '<div class="note" data-id="' + noteIndex + '">' +
           '<p class="js-note-body note__body">' + body + '</p>' +
-          '<div class="note__buttons">' +
-            '<button class="js-edit-note button--mediumblue">Edit</button>' +
-            '<button class="js-destroy-note button--red">Delete</button>' +
-          '</div>' +
+          '<button class="js-edit-note button--mediumblue">Edit</button>' +
+          '<button class="js-destroy-note button--red">Delete</button>' +
         '</div>'
       );
     }
